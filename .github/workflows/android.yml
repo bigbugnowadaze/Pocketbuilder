@@ -19,8 +19,9 @@ jobs:
       run: chmod +x ./gradlew
     - name: Build Release APK
       run: ./gradlew assembleRelease
-    - name: Releasing using Hub
-      uses: sangatdesai/release-apk@main
+    - name: Releasing using softprops action
+      uses: softprops/action-gh-release@v1
+      with:
+        files: app/build/outputs/apk/release/*.apk
       env:
-       GITHUB_TOKEN: ${{ secrets.TOKEN }}
-       APP_FOLDER: app
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
